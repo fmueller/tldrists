@@ -1,3 +1,12 @@
+# Hugo build output
+website/public/
+website/_vendor/
+
+# Hugo cache
+.hugo_build.lock
+
+.idea/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
