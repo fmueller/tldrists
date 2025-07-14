@@ -1,0 +1,24 @@
+{{ define "main" }}
+  <div class="tldr-feed">
+    <div class="tldr-post">
+      <img class="tldr-avatar" src="/avatars/nietzsche.png" alt="Nietzsche">
+      <div class="tldr-author-info">
+        <span class="tldr-name">Friedrich Nietzsche</span>
+        <span class="tldr-handle">@F_Nietzsche</span>
+      </div>
+      <div class="tldr-content">
+        <p class="tldr-text">
+          He who has a <em>why</em> to live can bear almost any how.
+        </p>
+        <div class="tldr-meta-container">
+          <div class="tldr-meta">8:15 AM · April 24, 2024</div>
+          <div class="tldr-icons">
+            {{ partial "icons/icon" (dict "vendor" "lucide" "name" "message-circle" "size" 16) }}
+            {{ partial "icons/icon" (dict "vendor" "lucide" "name" "repeat-2" "size" 16) }}
+            {{ partial "icons/icon" (dict "vendor" "lucide" "name" "heart" "size" 16) }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{{ end }}

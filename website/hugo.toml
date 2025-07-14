@@ -1,0 +1,18 @@
+baseURL = 'https://tldrists.net'
+languageCode = 'en-us'
+title = 'TLDRists'
+theme = 'tldrists'
+
+[module]
+  [[module.imports]]
+    path = "github.com/hugomods/icons/vendors/lucide"
+
+[menu]
+  [[menu.main]]
+    name = "Notae"
+    url = "/notae/"
+    weight = 1
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 2
