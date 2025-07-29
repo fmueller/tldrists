@@ -13,7 +13,12 @@ Renders a menu for the given menu ID.
 {{- with index site.Menus $menuID }}
   <nav class="site-nav">
     <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
-      {{ partial "icons/icon" (dict "vendor" "lucide" "name" "menu" "size" 24) }}
+      <span class="menu-icon">
+        {{ partial "icons/icon" (dict "vendor" "lucide" "name" "menu" "size" 24) }}
+      </span>
+      <span class="close-icon" style="display: none;">
+        {{ partial "icons/icon" (dict "vendor" "lucide" "name" "x" "size" 24) }}
+      </span>
     </button>
     <ul class="menu-items">
       {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}

@@ -23,12 +23,26 @@
     function setupMenuToggle() {
         const menuToggle = document.querySelector('.menu-toggle');
         const menuItems = document.querySelector('.menu-items');
+        const menuIcon = document.querySelector('.menu-icon');
+        const closeIcon = document.querySelector('.close-icon');
 
-        if (menuToggle && menuItems) {
+        if (menuToggle && menuItems && menuIcon && closeIcon) {
+            // Function to toggle icon visibility
+            function toggleIcons(isMenuOpen) {
+                if (isMenuOpen) {
+                    menuIcon.style.display = 'none';
+                    closeIcon.style.display = 'block';
+                } else {
+                    menuIcon.style.display = 'block';
+                    closeIcon.style.display = 'none';
+                }
+            }
+
             menuToggle.addEventListener('click', function() {
                 menuItems.classList.toggle('active');
                 const isExpanded = menuItems.classList.contains('active');
                 menuToggle.setAttribute('aria-expanded', isExpanded);
+                toggleIcons(isExpanded);
             });
 
             // Close the menu when clicking outside
@@ -36,6 +50,7 @@
                 if (!menuToggle.contains(event.target) && !menuItems.contains(event.target)) {
                     menuItems.classList.remove('active');
                     menuToggle.setAttribute('aria-expanded', 'false');
+                    toggleIcons(false);
                 }
             });
         }
