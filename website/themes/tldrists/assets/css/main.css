@@ -1,9 +1,10 @@
 :root,
 :root[data-colorscheme="light"] {
-  --font-body: 'Literata', serif;
-  --font-heading: 'Playfair Display', serif;
-  --font-ui: 'IBM Plex Sans', sans-serif;
-  --font-mono: 'Fira Mono', monospace;
+  --font-title: 'Playfair Display';
+  --font-header: 'Overpass';
+  --font-body: 'Literata';
+  --font-ui: 'IBM Plex Sans';
+  --font-mono: 'Fira Mono';
 
   --color-bg: #FAF9F6;
   --color-fg: #1A1A1A;
@@ -81,7 +82,7 @@ button, input {
 }
 
 header {
-  font-family: var(--font-ui), sans-serif;
+  font-family: var(--font-header), sans-serif;
   font-weight: 500;
   font-variant-numeric: tabular-nums;
   background: transparent;
@@ -145,9 +146,6 @@ header {
 
 /* Navigation styles */
 .site-nav {
-  font-family: var(--font-ui), sans-serif;
-  font-weight: 500;
-  font-variant-numeric: tabular-nums;
   position: relative;
 }
 
@@ -205,11 +203,23 @@ header h1 {
   padding: 0;
 }
 
-h1, h2, h3, h4 {
-  font-family: var(--font-heading), serif;
+h1 {
+  font-family: var(--font-title), serif;
   font-weight: 700;
   color: var(--color-accent);
   margin-bottom: 0.3em;
+}
+
+h2, h3 {
+  font-family: var(--font-header), sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+}
+
+h4, h5, h6 {
+  font-family: var(--font-header), sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 main {
@@ -314,10 +324,11 @@ footer {
 
 .tldr-handle {
   color: var(--color-subtle);
-  font-family: var(--font-ui), sans-serif;
+  font-family: var(--font-header), sans-serif;
   font-weight: 400;
-  font-variant: tabular-nums;
   font-size: 0.9rem;
+  letter-spacing: 0.025em;
+  font-variant: tabular-nums;
   display: block;
   margin-top: 0.25rem;
   line-height: 1.2;
