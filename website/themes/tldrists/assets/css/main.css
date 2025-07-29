@@ -88,7 +88,59 @@ header {
   padding: 1rem 1rem;
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Theme toggle button styles */
+.theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: var(--color-fg);
+  margin-left: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.theme-toggle:hover {
+  color: var(--color-accent);
+}
+
+.theme-toggle-icon {
+  display: block;
+  position: absolute;
+}
+
+.theme-toggle-icon svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+/* Show sun icon in dark mode, moon icon in light mode */
+.theme-toggle-icon-light {
+  display: none;
+}
+
+.theme-toggle-icon-dark {
+  display: block;
+}
+
+:root[data-colorscheme="dark"] .theme-toggle-icon-light {
+  display: block;
+}
+
+:root[data-colorscheme="dark"] .theme-toggle-icon-dark {
+  display: none;
 }
 
 /* Navigation styles */
@@ -140,7 +192,8 @@ header {
   text-decoration: none;
   color: var(--color-fg);
   padding: 0.5rem 0;
-  display: block;
+  display: inline-flex;
+  align-items: center;
 }
 
 .menu-items a:hover {
@@ -314,6 +367,17 @@ footer {
 }
 
 @media (max-width: 768px) {
+  /* Reverse order of menu and theme toggle on mobile */
+  .site-nav {
+    order: 2;
+  }
+  
+  .theme-toggle {
+    order: 1;
+    margin-left: 0;
+    margin-right: 0.75rem;
+  }
+  
   .menu-toggle {
     display: block;
   }

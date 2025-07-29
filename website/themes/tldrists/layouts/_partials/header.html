@@ -1,2 +1,12 @@
 <h1>{{ site.Title }}</h1>
-{{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+<div class="header-right">
+  {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+  <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" onclick="toggleColorScheme()">
+    <span class="theme-toggle-icon theme-toggle-icon-light">
+      {{ partial "icons/icon" (dict "vendor" "lucide" "name" "sun" "size" 24) }}
+    </span>
+    <span class="theme-toggle-icon theme-toggle-icon-dark">
+      {{ partial "icons/icon" (dict "vendor" "lucide" "name" "moon" "size" 24) }}
+    </span>
+  </button>
+</div>
