@@ -1,0 +1,19 @@
+{{- /*
+    Renders a single SVG icon, scaling it to .size (default 24).
+*/ -}}
+{{- $name    := .name -}}
+{{- $vendor  := .vendor -}}
+{{- $size    := default 24 .size -}}
+{{- $sizeStr := printf "%d" $size -}}
+
+{{- /* load the raw svg from assets/icons/... */ -}}
+{{- $svg     := resources.Get (printf "icons/%s/%s.svg" $vendor $name) -}}
+{{- $content := $svg.Content | safeHTML -}}
+
+{{- /* force decimal width/height so no stray \x10 bytes slip in */ -}}
+{{- $content = replaceRE ` width="[^"]*"` (printf ` width="%s"`  $sizeStr) $content -}}
+{{- $content = replaceRE ` height="[^"]*"` (printf ` height="%s"` $sizeStr) $content -}}
+
+{{- $content = replaceRE ` stroke-width="[^"]*"` ` stroke-width=1.5` $content -}}
+
+{{- $content | safeHTML -}}
