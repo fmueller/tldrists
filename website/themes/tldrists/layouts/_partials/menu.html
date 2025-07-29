@@ -11,8 +11,11 @@ Renders a menu for the given menu ID.
 {{- $menuID := .menuID }}
 
 {{- with index site.Menus $menuID }}
-  <nav>
-    <ul>
+  <nav class="site-nav">
+    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      {{ partial "icons/icon" (dict "vendor" "lucide" "name" "menu" "size" 24) }}
+    </button>
+    <ul class="menu-items">
       {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
     </ul>
   </nav>

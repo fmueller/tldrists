@@ -80,7 +80,7 @@ button, input {
   font-variant-numeric: tabular-nums;
 }
 
-header, nav {
+header {
   font-family: var(--font-ui), sans-serif;
   font-weight: 500;
   font-variant-numeric: tabular-nums;
@@ -89,6 +89,62 @@ header, nav {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+}
+
+/* Navigation styles */
+.site-nav {
+  font-family: var(--font-ui), sans-serif;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  position: relative;
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  color: var(--color-fg);
+}
+
+.menu-toggle svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.menu-toggle:hover {
+  color: var(--color-accent);
+}
+
+.menu-items {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 1.5rem;
+}
+
+.menu-items ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-items li {
+  position: relative;
+}
+
+.menu-items a {
+  text-decoration: none;
+  color: var(--color-fg);
+  padding: 0.5rem 0;
+  display: block;
+}
+
+.menu-items a:hover {
+  color: var(--color-accent);
 }
 
 header h1 {
@@ -255,6 +311,36 @@ footer {
 
 .tldr-icons svg:hover {
   color: var(--color-muted);
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .menu-items {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--color-card-bg);
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    min-width: 200px;
+    z-index: 100;
+    gap: 0.5rem;
+  }
+
+  .menu-items.active {
+    display: flex;
+  }
+
+  .menu-items ul {
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+  }
 }
 
 @media (max-width: 480px) {
