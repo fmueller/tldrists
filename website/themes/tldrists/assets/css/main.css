@@ -416,6 +416,12 @@ footer {
     margin-left: 1rem;
     margin-top: 0.5rem;
   }
+  
+  .menu-items a {
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+  }
 }
 
 @media (max-width: 480px) {
