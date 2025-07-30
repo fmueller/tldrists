@@ -272,13 +272,13 @@ footer {
   color: var(--color-subtle);
 }
 
-.tldr-feed {
+.notae-feed {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.tldr-post {
+.nota {
   display: grid;
   grid-template-columns: 48px 1fr;
   grid-template-rows: auto;
@@ -288,7 +288,7 @@ footer {
   align-items: start;
 }
 
-.tldr-avatar {
+.nota-avatar {
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -298,7 +298,7 @@ footer {
   grid-column: 1;
 }
 
-.tldr-author-info {
+.nota-author-info {
   grid-row: 1;
   grid-column: 2;
   display: flex;
@@ -308,13 +308,13 @@ footer {
   height: 48px;
 }
 
-.tldr-content {
+.nota-content {
   grid-row: 2;
   grid-column: 2;
   min-width: 0;
 }
 
-.tldr-name {
+.nota-name {
   font-family: var(--font-body), serif;
   font-weight: 500;
   line-height: 1.2;
@@ -322,7 +322,7 @@ footer {
   display: block;
 }
 
-.tldr-handle {
+.nota-handle {
   color: var(--color-subtle);
   font-family: var(--font-header), sans-serif;
   font-weight: 400;
@@ -334,11 +334,11 @@ footer {
   line-height: 1.2;
 }
 
-.tldr-text {
+.nota-text {
   margin: 0.25rem 0;
 }
 
-.tldr-meta-container {
+.nota-meta-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -347,7 +347,7 @@ footer {
   gap: 0.5rem;
 }
 
-.tldr-meta {
+.nota-meta {
   font-family: var(--font-ui), sans-serif;
   font-weight: 300;
   font-variant: tabular-nums;
@@ -356,7 +356,7 @@ footer {
   white-space: nowrap;
 }
 
-.tldr-icons {
+.nota-icons {
   display: flex;
   gap: 1.5rem;
   color: var(--color-subtle);
@@ -364,14 +364,14 @@ footer {
   flex-wrap: wrap;
 }
 
-.tldr-icons svg {
+.nota-icons svg {
   stroke: currentColor;
   fill: none;
   cursor: pointer;
   transition: color 0.2s ease;
 }
 
-.tldr-icons svg:hover {
+.nota-icons svg:hover {
   color: var(--color-muted);
 }
 
@@ -423,7 +423,7 @@ footer {
 }
 
 @media (max-width: 480px) {
-  .tldr-content {
+  .nota-content {
     grid-row: 2;
     grid-column: 1 / -1;
   }
@@ -434,36 +434,36 @@ footer {
     padding: 0 1rem;
   }
 
-  .tldr-post {
+  .nota {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
     padding: 1rem 0;
   }
 
-  .tldr-avatar {
+  .nota-avatar {
     align-self: flex-start;
   }
 
-  .tldr-author-info {
+  .nota-author-info {
     display: block;
     margin-top: 0.25rem;
     height: auto;
   }
 
-  .tldr-name {
+  .nota-name {
     display: block;
   }
 
-  .tldr-handle {
+  .nota-handle {
     display: block;
   }
 
-  .tldr-content {
+  .nota-content {
     width: 100%;
   }
 
-  .tldr-icons {
+  .nota-icons {
     gap: 1rem;
   }
 }
