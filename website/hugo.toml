@@ -11,6 +11,14 @@ defaultContentLanguageInSubdir = false
     languageCode = "en"
     [languages.en.params]
       description = "Your site description in English"
+    [[languages.en.menu.main]]
+      name = "Notae"
+      url = "/notae/"
+      weight = 1
+    [[languages.en.menu.main]]
+      name = "About"
+      url = "/about/"
+      weight = 2
 
   [languages.de]
     weight = 2
@@ -18,6 +26,14 @@ defaultContentLanguageInSubdir = false
     languageCode = "de"
     [languages.de.params]
       description = "Ihre Website-Beschreibung auf Deutsch"
+    [[languages.de.menu.main]]
+      name = "Notae"
+      url = "/notae/"
+      weight = 1
+    [[languages.de.menu.main]]
+      name = "Über uns"
+      url = "/about/"
+      weight = 2
 
 [module]
   [[module.imports]]
