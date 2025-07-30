@@ -1,6 +1,34 @@
 <h1>{{ site.Title }}</h1>
 <div class="header-right">
   {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+  <div class="lang-switcher">
+    <button id="lang-toggle" class="lang-toggle" aria-label="Toggle language menu" aria-expanded="false">
+      <span class="lang-icon">
+        {{ partial "icons/icon" (dict "vendor" "lucide" "name" "globe" "size" 24) }}
+      </span>
+    </button>
+    <ul class="lang-items">
+      {{ range $.Site.Languages }}
+        {{ $lang := .Lang }}
+        {{ if eq $.Site.Language.Lang $lang }}
+          <li class="current-lang">{{ .LanguageName }}</li>
+        {{ else }}
+          {{ $translation := "" }}
+          {{ range $.Page.AllTranslations }}
+            {{ if eq .Lang $lang }}
+              {{ $translation = . }}
+            {{ end }}
+          {{ end }}
+          {{ if $translation }}
+            <li><a href="{{ $translation.RelPermalink }}">{{ .LanguageName }}</a></li>
+          {{ else }}
+            {{/* Fallback to language homepage if no translation exists */}}
+            <li><a href="{{ "/" | relLangURL }}">{{ .LanguageName }}</a></li>
+          {{ end }}
+        {{ end }}
+      {{ end }}
+    </ul>
+  </div>
   <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme" onclick="toggleColorScheme()">
     <span class="theme-toggle-icon theme-toggle-icon-light">
       {{ partial "icons/icon" (dict "vendor" "lucide" "name" "sun" "size" 24) }}
