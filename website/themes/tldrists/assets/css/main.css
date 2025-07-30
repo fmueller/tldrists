@@ -450,14 +450,14 @@ footer {
   }
   
   .theme-toggle {
-    order: 2;
+    order: 1;
     margin-left: 0;
     margin-right: 0.75rem;
   }
   
-  /* Position language switcher to the left on mobile */
+  /* Position language switcher to the right of theme toggle on mobile */
   .lang-switcher {
-    order: 1;
+    order: 2;
     margin-left: 0;
     margin-right: 0.75rem;
   }
