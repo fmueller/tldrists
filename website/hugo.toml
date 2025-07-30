@@ -1,7 +1,23 @@
 baseURL = 'https://tldrists.net'
-languageCode = 'en-us'
 title = 'TLDRists'
 theme = 'tldrists'
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+
+[languages]
+  [languages.en]
+    weight = 1
+    languageName = "English"
+    languageCode = "en"
+    [languages.en.params]
+      description = "Your site description in English"
+
+  [languages.de]
+    weight = 2
+    languageName = "Deutsch"
+    languageCode = "de"
+    [languages.de.params]
+      description = "Ihre Website-Beschreibung auf Deutsch"
 
 [module]
   [[module.imports]]

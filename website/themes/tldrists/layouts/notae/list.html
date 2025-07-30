@@ -1,24 +1,36 @@
 {{ define "main" }}
+
+  {{ $notae := .Site.Data.notae }}
+  {{ $lang := .Site.Language.Lang }}
+
   <div class="notae-feed">
-    <div class="nota">
-      <img class="nota-avatar" src="/avatars/nietzsche.png" alt="Nietzsche">
-      <div class="nota-author-info">
-        <span class="nota-name">Friedrich Nietzsche</span>
-        <span class="nota-handle">@F_Nietzsche</span>
-      </div>
-      <div class="nota-content">
-        <p class="nota-text">
-          He who has a <em>why</em> to live can bear almost any how.
-        </p>
-        <div class="nota-meta-container">
-          <div class="nota-meta">8:15 AM · April 24, 2024</div>
-          <div class="nota-icons">
-            {{ partial "icons/icon" (dict "vendor" "lucide" "name" "message-circle" "size" 16) }}
-            {{ partial "icons/icon" (dict "vendor" "lucide" "name" "repeat-2" "size" 16) }}
-            {{ partial "icons/icon" (dict "vendor" "lucide" "name" "heart" "size" 16) }}
+    {{ range $notae }}
+      {{ $content := index .content $lang }}
+      {{ if $content }}
+        <div class="nota">
+          <img class="nota-avatar" src="/avatars/nietzsche.png" alt="Nietzsche">
+          <div class="nota-author-info">
+            <span class="nota-name">{{ .author.name }}</span>
+            <span class="nota-handle">{{ .author.handle }}</span>
+          </div>
+          <div class="nota-content">
+            <p class="nota-text">
+              {{ $content }}
+            </p>
+            <div class="nota-meta-container">
+              <div class="nota-meta">{{ (time .created_at).Format "02. Jan 2006" }}</div>
+              <div class="nota-icons">
+                {{ partial "icons/icon" (dict "vendor" "lucide" "name" "message-circle" "size" 16) }}
+                <span class="nota-meta">{{ .stats.replies }}</span>
+                {{ partial "icons/icon" (dict "vendor" "lucide" "name" "repeat-2" "size" 16) }}
+                <span class="nota-meta">{{ .stats.retweets }}</span>
+                {{ partial "icons/icon" (dict "vendor" "lucide" "name" "heart" "size" 16) }}
+                <span class="nota-meta">{{ .stats.likes }}</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      {{ end }}
+    {{ end }}
   </div>
 {{ end }}
