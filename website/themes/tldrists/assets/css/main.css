@@ -365,8 +365,6 @@ footer {
 }
 
 .tldr-icons svg {
-  width: 16px;
-  height: 16px;
   stroke: currentColor;
   fill: none;
   cursor: pointer;
