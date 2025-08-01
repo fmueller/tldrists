@@ -72,7 +72,7 @@ jobs:
 
       - name: Serve site and run Lighthouse
         run: |
-          hugo server --bind 0.0.0.0 --port 8080 &
+          hugo server --minify --bind 0.0.0.0 --port 8080 &
           sleep 5
           npm install -g @lhci/cli
           lhci autorun --collect.url=http://localhost:8080 --upload.target=temporary-public-storage
