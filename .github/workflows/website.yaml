@@ -83,6 +83,6 @@ jobs:
           urls: |
             http://localhost:8080/
             http://localhost:8080/notae/
-          configPath: website/.lighthouserc-${{ theme }}.json
+          configPath: website/.lighthouserc-${{ matrix.theme }}.json
           uploadArtifacts: true
           temporaryPublicStorage: false
