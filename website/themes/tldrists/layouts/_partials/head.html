@@ -2,6 +2,8 @@
 <meta name="viewport" content="width=device-width">
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
 <link rel="preconnect" href="https://fonts.bunny.net">
-<link href="https://fonts.bunny.net/css?family=literata:400,400i,500,500i|playfair-display:700|overpass:400,500,600,700|ibm-plex-sans:300,400,500|fira-mono:400&display=swap" rel="stylesheet" />
+{{- $fontFamilies := "literata:400,400i,500,500i|playfair-display:700|overpass:400,500,600,700|ibm-plex-sans:300,400,500|fira-mono:400" -}}
+{{- $fontUrl := printf "https://fonts.bunny.net/css?%s" (querify "family" $fontFamilies "display" "swap") -}}
+<link href="{{ $fontUrl }}" rel="stylesheet" />
 {{ partialCached "head/css.html" . }}
 {{ partialCached "head/js.html" . }}
