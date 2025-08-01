@@ -1,0 +1,41 @@
+name: Generator
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - "generator/**"
+  pull_request:
+    branches: [ main ]
+    paths:
+      - "generator/**"
+  workflow_dispatch:
+
+env:
+  PYTHON_VERSION: "3.12.11"
+  POETRY_VERSION: "2.1.3"
+  WORKING_DIRECTORY: generator
+
+jobs:
+  lint-and-typecheck:
+    name: Linting and Type Checking
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.WORKING_DIRECTORY }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install Poetry
+        run: pipx install poetry==${{ env.POETRY_VERSION }}
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'poetry'
+      - name: Install dependencies
+        run: poetry install --no-interaction
+      - name: Run Ruff checks
+        run: poetry run ruff check .
+      - name: Run mypy for type checking
+        run: poetry run mypy .
