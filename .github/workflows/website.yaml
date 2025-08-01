@@ -70,9 +70,15 @@ jobs:
       - name: Build site
         run: hugo build --minify
 
-      - name: Serve site and run Lighthouse
-        run: |
-          hugo server --minify --bind 0.0.0.0 --port 8080 &
-          sleep 5
-          npm install -g @lhci/cli
-          lhci autorun --collect.url=http://localhost:8080 --upload.target=temporary-public-storage
+      - name: Serve site
+        run: hugo server --minify --bind 0.0.0.0 --port 8080
+
+      - name: Audit site with Lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            http://localhost:8080
+            http://localhost:8080/notae
+          configPath: .lighthouserc.json
+          uploadArtifacts: true
+          temporaryPublicStorage: false

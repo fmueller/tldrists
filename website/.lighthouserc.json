@@ -1,0 +1,10 @@
+{
+  "ci": {
+    "collect": {
+      "numberOfRuns": 2,
+      "settings": {
+        "chromeFlags": "--no-sandbox --headless"
+      }
+    }
+  }
+}
