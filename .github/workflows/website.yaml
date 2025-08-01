@@ -72,10 +72,10 @@ jobs:
           extended: true
 
       - name: Build site
-        run: hugo build --minify
+        run: hugo build --minify --environment production --gc --cleanDestinationDir
 
       - name: Serve site
-        run: hugo server --minify --bind 0.0.0.0 --port 8080 & sleep 5
+        run: hugo server --minify --environment production --disableFastRender --bind 0.0.0.0 --port 8080 & sleep 5
 
       - name: Audit site with Lighthouse
         uses: treosh/lighthouse-ci-action@v12
@@ -84,5 +84,5 @@ jobs:
             http://localhost:8080/
             http://localhost:8080/notae/
           configPath: website/.lighthouserc-${{ matrix.theme }}.json
-          uploadArtifacts: true
-          temporaryPublicStorage: false
+          uploadArtifacts: false
+          temporaryPublicStorage: true
