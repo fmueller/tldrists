@@ -71,13 +71,18 @@ jobs:
           hugo-version: 'latest'
           extended: true
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
       - name: Build site
         run: hugo build --minify --environment production --gc --cleanDestinationDir
 
       - name: Serve site
         run: |
           cd public
-          python3 -m http.server 8080 --bind 0.0.0.0 &
+          serve -s . -l 8080 --cors &
           sleep 5
 
       - name: Audit site with Lighthouse
