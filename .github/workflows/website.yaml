@@ -75,7 +75,7 @@ jobs:
         run: hugo build --minify --environment production --gc --cleanDestinationDir
 
       - name: Serve site
-        run:
+        run: |
           cd public
           python3 -m http.server 8080 --bind 0.0.0.0 &
           sleep 5
