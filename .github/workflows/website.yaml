@@ -77,8 +77,18 @@ jobs:
         uses: treosh/lighthouse-ci-action@v12
         with:
           urls: |
-            http://localhost:8080
-            http://localhost:8080/notae
+            http://localhost:8080/
+            http://localhost:8080/notae/
           configPath: website/.lighthouserc.json
+          uploadArtifacts: true
+          temporaryPublicStorage: false
+
+      - name: Audit site in Dark Mode with Lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            http://localhost:8080/
+            http://localhost:8080/notae/
+          configPath: website/.lighthouserc-dark.json
           uploadArtifacts: true
           temporaryPublicStorage: false

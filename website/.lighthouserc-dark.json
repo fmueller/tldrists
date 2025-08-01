@@ -3,7 +3,7 @@
     "collect": {
       "numberOfRuns": 3,
       "settings": {
-        "chromeFlags": "--no-sandbox --headless"
+        "chromeFlags": "--enable-features=WebContentsForceDark --no-sandbox --headless"
       }
     }
   }
