@@ -46,7 +46,7 @@ _agent = Agent(
 def generate(
     prompt: str = typer.Option(..., "-p", "--prompt", help="Prompt"),
     count: int = typer.Option(1, "-n", "--count", help="Number of posts to generate"),
-):
+) -> None:
     cfg = Config(prompt=prompt, count=count)
     typer.echo(f"Generating {cfg.count} post(s) with prompt: {cfg.prompt!r}")
     for _i in range(cfg.count):
