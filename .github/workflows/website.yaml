@@ -79,6 +79,6 @@ jobs:
           urls: |
             http://localhost:8080
             http://localhost:8080/notae
-          configPath: ./.lighthouserc.json
+          configPath: /website/.lighthouserc.json
           uploadArtifacts: true
           temporaryPublicStorage: false
