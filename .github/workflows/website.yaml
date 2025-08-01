@@ -41,7 +41,7 @@ jobs:
           extended: true
 
       - name: Build Hugo site
-        run: hugo --minify --verbose
+        run: hugo build --minify --verbose
 
       - name: Validate HTML
         uses: Cyb3r-Jak3/html5validator-action@v7.2.0
@@ -68,7 +68,7 @@ jobs:
           extended: true
 
       - name: Build site
-        run: hugo --minify
+        run: hugo build --minify
 
       - name: Serve site and run Lighthouse
         run: |
