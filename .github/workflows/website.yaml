@@ -76,6 +76,9 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Install serve
+        run: npm install -g serve
+
       - name: Build site
         run: hugo build --minify --environment production --gc --cleanDestinationDir
 
