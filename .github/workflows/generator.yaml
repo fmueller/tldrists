@@ -26,6 +26,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Checkout internal prompts repo
+        uses: actions/checkout@v4
+        with:
+          repository: fmueller/tldrists-internal
+          token: ${{ secrets.PAT_INTERNAL_REPO }}
+          path: generator/internal
       - name: Install Poetry
         run: pipx install poetry==${{ env.POETRY_VERSION }}
       - name: Set up Python
