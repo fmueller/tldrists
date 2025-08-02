@@ -1,0 +1,3 @@
+[submodule "generator/internal"]
+	path = generator/internal
+	url = git@github.com:fmueller/tldrists-internal.git
