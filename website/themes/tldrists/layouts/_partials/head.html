@@ -4,6 +4,7 @@
 <link rel="preconnect" href="https://fonts.bunny.net">
 {{- $fontFamilies := "literata:400,400i,500,500i|playfair-display:700|overpass:400,500,600,700|ibm-plex-sans:300,400,500|fira-mono:400" -}}
 {{- $fontUrl := printf "https://fonts.bunny.net/css?%s" (querify "family" $fontFamilies "display" "swap") -}}
-<link href="{{ $fontUrl }}" rel="stylesheet" />
+<link href="{{ $fontUrl }}" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="{{ $fontUrl }}" rel="stylesheet"></noscript>
 {{ partialCached "head/css.html" . }}
 {{ partialCached "head/js.html" . }}
