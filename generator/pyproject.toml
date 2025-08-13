@@ -24,7 +24,7 @@ package-mode = false
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.17.1"
-ruff = "^0.12.7"
+ruff = "^0.12.8"
 pre-commit = "^4.3.0"
 types-pyyaml = "^6.0.12.20250809"
 
