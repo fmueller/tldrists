@@ -25,9 +25,9 @@ jobs:
         working-directory: ${{ env.WORKING_DIRECTORY }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Checkout internal prompts repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: fmueller/tldrists-internal
           token: ${{ secrets.PAT_INTERNAL_REPO }}
