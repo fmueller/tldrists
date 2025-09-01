@@ -46,7 +46,7 @@ jobs:
       - name: Run mypy for type checking
         run: poetry run mypy .
 
-  unit-tests:
+  tests:
     name: Tests
     needs: lint-and-typecheck
     runs-on: ubuntu-latest
