@@ -15,13 +15,17 @@ dependencies = [
     "pydantic-ai-slim[openai] (>=0.8.1,<0.9.0)"
 ]
 
+[project.scripts]
+tldrists-gen = "tldrists_generator.cli:app"
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
-package-mode = false
+packages = [
+    { include = "tldrists_generator", from = "src" }
+]
 
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.17.1"

@@ -61,7 +61,3 @@ def generate(
     for _i in range(cfg.count):
         response = _agent.run_sync(user_prompt=f"{prompt}")
         typer.echo(f"- {response.output.strip()}")
-
-
-if __name__ == "__main__":
-    app()
