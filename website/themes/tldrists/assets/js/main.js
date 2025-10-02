@@ -55,18 +55,18 @@
             });
         }
     }
-    
+
     function setupLangToggle() {
         const langToggle = document.querySelector('.lang-toggle');
         const langItems = document.querySelector('.lang-items');
-        
+
         if (langToggle && langItems) {
             langToggle.addEventListener('click', function() {
                 langItems.classList.toggle('active');
                 const isExpanded = langItems.classList.contains('active');
                 langToggle.setAttribute('aria-expanded', isExpanded);
             });
-            
+
             // Close the language menu when clicking outside
             document.addEventListener('click', function(event) {
                 if (!langToggle.contains(event.target) && !langItems.contains(event.target)) {

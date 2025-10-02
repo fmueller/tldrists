@@ -1,242 +1,282 @@
 [
   {
-    "id": "nota-001",
     "author": {
-      "name": "Thomas von Aquin",
-      "handle": "@aquinatus"
+      "handle": "@aquinatus",
+      "name": "Thomas von Aquin"
+    },
+    "content": {
+      "de": "Wahrheit ist die \u00dcbereinstimmung von Sache und Verstand.",
+      "en": "Truth is the correspondence between the thing and the intellect.",
+      "la": "Veritas est adequatio rei et intellectus."
     },
     "created_at": "2025-07-30T09:00:00Z",
+    "id": "nota-001",
     "original_language": "la",
-    "content": {
-      "la": "Veritas est adequatio rei et intellectus.",
-      "de": "Wahrheit ist die Übereinstimmung von Sache und Verstand.",
-      "en": "Truth is the correspondence between the thing and the intellect."
-    },
     "slug": {
       "de": "wahrheit-und-verstand",
       "en": "truth-and-intellect"
     },
-    "tags": ["metaphysik", "wahrheit", "thomismus"],
     "stats": {
       "likes": 431,
-      "retweets": 87,
-      "replies": 12
-    }
+      "replies": 12,
+      "retweets": 87
+    },
+    "tags": [
+      "metaphysik",
+      "wahrheit",
+      "thomismus"
+    ]
   },
   {
-    "id": "nota-002",
     "author": {
-      "name": "Hannah Arendt",
-      "handle": "@arendt"
+      "handle": "@arendt",
+      "name": "Hannah Arendt"
     },
-    "created_at": "2025-07-30T09:01:00Z",
-    "original_language": "de",
     "content": {
       "de": "Niemand hat das Recht zu gehorchen.",
       "en": "No one has the right to obey.",
       "la": "Nemo ius habet oboedire."
     },
+    "created_at": "2025-07-30T09:01:00Z",
+    "id": "nota-002",
+    "original_language": "de",
     "slug": {
       "de": "recht-zu-gehorchen",
       "en": "right-to-obey"
     },
-    "tags": ["politik", "verantwortung", "autorität"],
     "stats": {
       "likes": 1293,
-      "retweets": 278,
-      "replies": 49
-    }
+      "replies": 49,
+      "retweets": 278
+    },
+    "tags": [
+      "politik",
+      "verantwortung",
+      "autorit\u00e4t"
+    ]
   },
   {
-    "id": "nota-003",
     "author": {
-      "name": "Friedrich Nietzsche",
-      "handle": "@dionysos"
+      "handle": "@dionysos",
+      "name": "Friedrich Nietzsche"
     },
-    "created_at": "2025-07-30T09:02:00Z",
-    "original_language": "de",
     "content": {
       "de": "Und wenn du lange in einen Abgrund blickst, blickt der Abgrund auch in dich hinein.",
       "en": "And if you gaze long into an abyss, the abyss also gazes into you.",
       "la": "Si diu in abyssum spectas, abyssus etiam in te spectabit."
     },
+    "created_at": "2025-07-30T09:02:00Z",
+    "id": "nota-003",
+    "original_language": "de",
     "slug": {
       "de": "blick-in-den-abgrund",
       "en": "gaze-into-abyss"
     },
-    "tags": ["existenz", "selbst", "gefahr"],
     "stats": {
       "likes": 2104,
-      "retweets": 310,
-      "replies": 134
-    }
+      "replies": 134,
+      "retweets": 310
+    },
+    "tags": [
+      "existenz",
+      "selbst",
+      "gefahr"
+    ]
   },
   {
-    "id": "nota-004",
     "author": {
-      "name": "Simone de Beauvoir",
-      "handle": "@debeauvoir"
+      "handle": "@debeauvoir",
+      "name": "Simone de Beauvoir"
+    },
+    "content": {
+      "de": "Man wird nicht als Frau geboren, man wird dazu gemacht.",
+      "en": "One is not born a woman, but rather becomes one.",
+      "fr": "On ne na\u00eet pas femme: on le devient."
     },
     "created_at": "2025-07-30T09:03:00Z",
+    "id": "nota-004",
     "original_language": "fr",
-    "content": {
-      "fr": "On ne naît pas femme: on le devient.",
-      "de": "Man wird nicht als Frau geboren, man wird dazu gemacht.",
-      "en": "One is not born a woman, but rather becomes one."
-    },
     "slug": {
       "de": "frau-werden",
       "en": "becoming-woman"
     },
-    "tags": ["feminismus", "identität", "freiheit"],
     "stats": {
       "likes": 1677,
-      "retweets": 423,
-      "replies": 71
-    }
+      "replies": 71,
+      "retweets": 423
+    },
+    "tags": [
+      "feminismus",
+      "identit\u00e4t",
+      "freiheit"
+    ]
   },
   {
-    "id": "nota-005",
     "author": {
-      "name": "Augustinus",
-      "handle": "@augustinus"
+      "handle": "@augustinus",
+      "name": "Augustinus"
+    },
+    "content": {
+      "de": "Unruhig ist unser Herz, bis es ruht in dir.",
+      "en": "Our heart is restless until it rests in you.",
+      "la": "Inquietum est cor nostrum, donec requiescat in te."
     },
     "created_at": "2025-07-30T09:04:00Z",
+    "id": "nota-005",
     "original_language": "la",
-    "content": {
-      "la": "Inquietum est cor nostrum, donec requiescat in te.",
-      "de": "Unruhig ist unser Herz, bis es ruht in dir.",
-      "en": "Our heart is restless until it rests in you."
-    },
     "slug": {
       "de": "unruhiges-herz",
       "en": "restless-heart"
     },
-    "tags": ["spiritualität", "glauben", "sehnsucht"],
     "stats": {
       "likes": 2010,
-      "retweets": 490,
-      "replies": 65
-    }
+      "replies": 65,
+      "retweets": 490
+    },
+    "tags": [
+      "spiritualit\u00e4t",
+      "glauben",
+      "sehnsucht"
+    ]
   },
   {
-    "id": "nota-006",
     "author": {
-      "name": "Søren Kierkegaard",
-      "handle": "@kierkegaard"
+      "handle": "@kierkegaard",
+      "name": "S\u00f8ren Kierkegaard"
+    },
+    "content": {
+      "da": "At vove er at miste fodf\u00e6stet et \u00f8jeblik. Ikke at vove er at miste sig selv.",
+      "de": "Zu wagen hei\u00dft, f\u00fcr einen Moment den Halt zu verlieren. Nicht zu wagen hei\u00dft, sich selbst zu verlieren.",
+      "en": "To dare is to lose one\u2019s footing momentarily. Not to dare is to lose oneself."
     },
     "created_at": "2025-07-30T09:05:00Z",
+    "id": "nota-006",
     "original_language": "da",
-    "content": {
-      "da": "At vove er at miste fodfæstet et øjeblik. Ikke at vove er at miste sig selv.",
-      "de": "Zu wagen heißt, für einen Moment den Halt zu verlieren. Nicht zu wagen heißt, sich selbst zu verlieren.",
-      "en": "To dare is to lose one’s footing momentarily. Not to dare is to lose oneself."
-    },
     "slug": {
       "de": "zu-wagen",
       "en": "to-dare"
     },
-    "tags": ["entscheidung", "existenz", "freiheit"],
     "stats": {
       "likes": 954,
-      "retweets": 193,
-      "replies": 28
-    }
+      "replies": 28,
+      "retweets": 193
+    },
+    "tags": [
+      "entscheidung",
+      "existenz",
+      "freiheit"
+    ]
   },
   {
-    "id": "nota-007",
     "author": {
-      "name": "Karl Marx",
-      "handle": "@kapital"
+      "handle": "@kapital",
+      "name": "Karl Marx"
     },
-    "created_at": "2025-07-30T09:06:00Z",
-    "original_language": "de",
     "content": {
-      "de": "Die Philosophen haben die Welt nur verschieden interpretiert; es kommt aber darauf an, sie zu verändern.",
+      "de": "Die Philosophen haben die Welt nur verschieden interpretiert; es kommt aber darauf an, sie zu ver\u00e4ndern.",
       "en": "The philosophers have only interpreted the world in various ways; the point is to change it.",
       "la": "Philosophi mundum tantummodo varie interpretati sunt; sed res mutanda est."
     },
+    "created_at": "2025-07-30T09:06:00Z",
+    "id": "nota-007",
+    "original_language": "de",
     "slug": {
       "de": "welt-veraendern",
       "en": "change-the-world"
     },
-    "tags": ["materialismus", "revolution", "praxis"],
     "stats": {
       "likes": 3040,
-      "retweets": 612,
-      "replies": 105
-    }
+      "replies": 105,
+      "retweets": 612
+    },
+    "tags": [
+      "materialismus",
+      "revolution",
+      "praxis"
+    ]
   },
   {
-    "id": "nota-008",
     "author": {
-      "name": "Rachel Carson",
-      "handle": "@carson"
+      "handle": "@carson",
+      "name": "Rachel Carson"
     },
-    "created_at": "2025-07-30T09:07:00Z",
-    "original_language": "en",
     "content": {
+      "de": "In der Natur existiert nichts f\u00fcr sich allein.",
       "en": "In nature nothing exists alone.",
-      "de": "In der Natur existiert nichts für sich allein.",
       "la": "In natura nihil solum existit."
     },
+    "created_at": "2025-07-30T09:07:00Z",
+    "id": "nota-008",
+    "original_language": "en",
     "slug": {
       "de": "nichts-ist-allein",
       "en": "nothing-exists-alone"
     },
-    "tags": ["ökologie", "natur", "vernetzung"],
     "stats": {
       "likes": 1123,
-      "retweets": 239,
-      "replies": 44
-    }
+      "replies": 44,
+      "retweets": 239
+    },
+    "tags": [
+      "\u00f6kologie",
+      "natur",
+      "vernetzung"
+    ]
   },
   {
-    "id": "nota-009",
     "author": {
-      "name": "Benedikt von Nursia",
-      "handle": "@benedictus"
+      "handle": "@benedictus",
+      "name": "Benedikt von Nursia"
+    },
+    "content": {
+      "de": "Bete und arbeite.",
+      "en": "Pray and work.",
+      "la": "Ora et labora."
     },
     "created_at": "2025-07-30T09:08:00Z",
+    "id": "nota-009",
     "original_language": "la",
-    "content": {
-      "la": "Ora et labora.",
-      "de": "Bete und arbeite.",
-      "en": "Pray and work."
-    },
     "slug": {
       "de": "bete-und-arbeite",
       "en": "pray-and-work"
     },
-    "tags": ["kloster", "regel", "disziplin"],
     "stats": {
       "likes": 870,
-      "retweets": 141,
-      "replies": 17
-    }
+      "replies": 17,
+      "retweets": 141
+    },
+    "tags": [
+      "kloster",
+      "regel",
+      "disziplin"
+    ]
   },
   {
-    "id": "nota-010",
     "author": {
-      "name": "Hypatia von Alexandria",
-      "handle": "@hypatia"
+      "handle": "@hypatia",
+      "name": "Hypatia von Alexandria"
+    },
+    "content": {
+      "de": "Philosophie ist das Studium des Todes.",
+      "en": "Philosophy is the study of death.",
+      "grc": "\u03a6\u03b9\u03bb\u03bf\u03c3\u03bf\u03c6\u03af\u03b1 \u1f10\u03c3\u03c4\u1f76\u03bd \u1f21 \u03bc\u03b5\u03bb\u03ad\u03c4\u03b7 \u03c4\u03bf\u1fe6 \u03b8\u03b1\u03bd\u03ac\u03c4\u03bf\u03c5."
     },
     "created_at": "2025-07-30T09:09:00Z",
+    "id": "nota-010",
     "original_language": "grc",
-    "content": {
-      "grc": "Φιλοσοφία ἐστὶν ἡ μελέτη τοῦ θανάτου.",
-      "de": "Philosophie ist das Studium des Todes.",
-      "en": "Philosophy is the study of death."
-    },
     "slug": {
       "de": "studium-des-todes",
       "en": "study-of-death"
     },
-    "tags": ["antike", "philosophie", "sterblichkeit"],
     "stats": {
       "likes": 777,
-      "retweets": 201,
-      "replies": 38
-    }
+      "replies": 38,
+      "retweets": 201
+    },
+    "tags": [
+      "antike",
+      "philosophie",
+      "sterblichkeit"
+    ]
   }
 ]

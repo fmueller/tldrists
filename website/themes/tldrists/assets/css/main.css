@@ -448,20 +448,20 @@ footer {
   .site-nav {
     order: 3;
   }
-  
+
   .theme-toggle {
     order: 1;
     margin-left: 0;
     margin-right: 0.75rem;
   }
-  
+
   /* Position language switcher to the right of theme toggle on mobile */
   .lang-switcher {
     order: 2;
     margin-left: 0;
     margin-right: 0.75rem;
   }
-  
+
   /* Change language items dropdown position on mobile */
   .lang-items {
     flex-direction: column;
@@ -475,7 +475,7 @@ footer {
     z-index: 100;
     gap: 0.5rem;
   }
-  
+
   .menu-toggle {
     display: block;
   }
@@ -503,7 +503,7 @@ footer {
     margin-left: 1rem;
     margin-top: 0.5rem;
   }
-  
+
   .menu-items a {
     display: block;
     width: 100%;
