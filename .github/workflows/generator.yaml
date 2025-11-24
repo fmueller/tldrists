@@ -25,9 +25,9 @@ jobs:
         working-directory: ${{ env.WORKING_DIRECTORY }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Checkout internal prompts repo
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         with:
           repository: fmueller/tldrists-internal
           token: ${{ secrets.PAT_INTERNAL_REPO }}
@@ -55,7 +55,7 @@ jobs:
         working-directory: ${{ env.WORKING_DIRECTORY }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Install Poetry
         run: pipx install poetry==${{ env.POETRY_VERSION }}
       - name: Set up Python
