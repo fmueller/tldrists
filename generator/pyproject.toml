@@ -28,7 +28,7 @@ packages = [
 ]
 
 [tool.poetry.group.dev.dependencies]
-mypy = "^1.19.0"
+mypy = "^1.19.1"
 ruff = "^0.14.8"
 pre-commit = "^4.5.0"
 types-pyyaml = "^6.0.12.20250915"
