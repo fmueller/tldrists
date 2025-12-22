@@ -7,8 +7,36 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    labels:
+      - "github-actions"
+      - "dependencies"
 
   - package-ecosystem: "pip"
     directory: "/generator"
     schedule:
       interval: "weekly"
+    labels:
+      - "python"
+      - "dependencies"
+    groups:
+      python-dependencies:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
+
+  - package-ecosystem: "gomod"
+    directory: "/website"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "go"
+      - "dependencies"
+    groups:
+      go-dependencies:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
