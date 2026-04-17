@@ -9,10 +9,10 @@ license = {text = "AGPL-3.0"}
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
 dependencies = [
-    "pydantic >=2.11.7",
+    "pydantic >=2.13.2",
     "typer >=0.16.0",
     "pyyaml >=6.0.2",
-    "pydantic-ai-slim[openai] >=0.8.1"
+    "pydantic-ai-slim[openai] >=1.84.0"
 ]
 
 [project.scripts]
@@ -28,11 +28,11 @@ packages = [
 ]
 
 [tool.poetry.group.dev.dependencies]
-mypy = "^1.20.0"
-ruff = "^0.15.9"
+mypy = "^1.20.1"
+ruff = "^0.15.11"
 pre-commit = "^4.5.1"
 types-pyyaml = "^6.0.12.20250915"
-pytest = "^9.0.2"
+pytest = "^9.0.3"
 
 [tool.ruff]
 line-length = 120
