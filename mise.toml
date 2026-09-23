@@ -1,0 +1,29 @@
+# Pinned developer tools and the local quality gate.
+#
+# `mise run setup` installs the locked tools, syncs the generator environment,
+# and installs the opt-in Lefthook hooks. CI remains authoritative.
+
+[tools]
+uv = "0.12.17"
+lefthook = "2.1.14"
+
+[tasks.setup]
+description = "Install the toolchain, sync dependencies, and install git hooks"
+run = [
+  "mise install --locked --yes",
+  "uv sync --directory generator --locked --dev",
+  "git config --local core.hooksPath \"$(git rev-parse --path-format=absolute --git-common-dir)/hooks\"",
+  "lefthook install --force",
+]
+
+[tasks.check]
+description = "Run the local quality gate"
+run = [
+  "uv run --directory generator ruff check",
+  "uv run --directory generator ruff format --check",
+  "uv run --directory generator mypy",
+  "uv run --directory generator pytest -v",
+  "bash scripts/check-commit-msg-test.sh",
+  "bash scripts/check-push-messages-test.sh",
+  "bash scripts/check-author-test.sh",
+]

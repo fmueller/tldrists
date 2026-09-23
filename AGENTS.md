@@ -6,10 +6,12 @@
 - `website/` is the Hugo project: global config in `hugo.toml`, content under `content/`, theme overrides in `themes/tldrists/`, and static assets in `static/`.
 
 ## Build, Test, and Development Commands
-- Install generator dependencies: `cd generator && poetry install`.
-- Lint and format: `poetry run ruff check .` and `poetry run ruff format .`.
-- Type-check: `poetry run mypy`.
-- Run the CLI: `poetry run tldrists-gen notae generate -i internal -p "Topic" -n 3`.
+- Prepare an orb or checkout: `mise run setup`.
+- Install generator dependencies: `mise exec -- uv sync --directory generator --locked --dev`.
+- Lint and format: `mise exec -- uv run --directory generator ruff check` and `mise exec -- uv run --directory generator ruff format`.
+- Type-check: `mise exec -- uv run --directory generator mypy`.
+- Run tests: `mise exec -- uv run --directory generator pytest`.
+- Run the CLI: `mise exec -- uv run --directory generator tldrists-gen notae generate -i internal -p "Topic" -n 3`.
 - Build the website: `cd website && hugo`; live preview with `hugo server -D`.
 
 ## Coding Style & Naming Conventions
@@ -20,10 +22,11 @@
 ## Testing Guidelines
 - Write pytest cases beside the feature in `generator/tests/unit/...`, naming files `test_<module>.py` and functions `test_<behavior>`.
 - Use `CliRunner` for CLI assertions and mock external services; ensure each new command has a help-screen test.
-- Run `poetry run pytest` locally before pushing; add smoke tests or shortcode snapshots when changing Hugo output.
+- Run `mise run check` locally before pushing; add smoke tests or shortcode snapshots when changing Hugo output.
 
 ## Commit & Pull Request Guidelines
 - Follow Conventional Commits as seen in history (`chore:`, `build(deps):`, `feat:`) and keep subject lines under 72 characters.
+- Commit messages need a blank line and a descriptive body with lines no longer than 72 characters; automated attribution and agent authors are rejected.
 - Squash noisy dependency updates; reference issues with `#id` where relevant.
 - Pull requests should describe the change, list tests executed, and include screenshots or URLs for visible website updates.
 

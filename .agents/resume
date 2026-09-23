@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# TLDRists has no services, tunnels, or authentication to repair on wake.
+printf 'tldrists requires no resume-time setup\n'

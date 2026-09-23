@@ -7,15 +7,15 @@ See [AGENTS.md](../AGENTS.md) for complete repository guidelines.
 ## Commands
 
 ```bash
-poetry install              # Install dependencies
-poetry run ruff check .     # Lint
-poetry run ruff format .    # Format
-poetry run mypy             # Type check (strict mode)
-poetry run pytest           # Run tests
-poetry run pytest -v        # Verbose test output
+mise exec -- uv sync --directory generator --locked --dev
+mise exec -- uv run --directory generator ruff check
+mise exec -- uv run --directory generator ruff format --check
+mise exec -- uv run --directory generator mypy             # Type check (strict mode)
+mise exec -- uv run --directory generator pytest
+mise exec -- uv run --directory generator pytest -v        # Verbose test output
 
 # Run CLI (requires OLLAMA_URL and OLLAMA_MODEL env vars)
-poetry run tldrists-gen notae generate -i <internal-dir> -p "<topic>" -n <count>
+mise exec -- uv run --directory generator tldrists-gen notae generate -i <internal-dir> -p "<topic>" -n <count>
 ```
 
 ## Project Structure

@@ -1,0 +1,234 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+readonly MISE_VERSION="2026.9.12"
+readonly MISE_BIN="$HOME/.local/bin/mise"
+readonly REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+readonly GO_VERSION="1.24.4"
+readonly HUGO_VERSION="0.148.2"
+readonly TOOLCHAIN_DIR="$HOME/.local/share/tldrists/toolchains"
+
+run_step() {
+  local label="$1"
+  shift
+  local started_at="$SECONDS"
+
+  printf '==> %s\n' "$label"
+  "$@"
+  printf '<== %s (%ss)\n' "$label" "$((SECONDS - started_at))"
+}
+
+ensure_apt_packages() {
+  local package
+  local -a missing=()
+  local -a packages=(ca-certificates curl git build-essential xz-utils)
+
+  for package in "${packages[@]}"; do
+    if ! dpkg-query -W -f='${Status}' "$package" 2>/dev/null | grep -q '^install ok installed$'; then
+      missing+=("$package")
+    fi
+  done
+
+  if ((${#missing[@]} == 0)); then
+    printf 'Required system packages are already installed.\n'
+    return
+  fi
+
+  if ((EUID == 0)); then
+    apt-get update
+    apt-get install -y --no-install-recommends "${missing[@]}"
+  elif command -v sudo >/dev/null 2>&1; then
+    sudo -n apt-get update
+    sudo -n apt-get install -y --no-install-recommends "${missing[@]}"
+  else
+    printf 'Cannot install missing system packages without root or passwordless sudo: %s\n' "${missing[*]}" >&2
+    return 1
+  fi
+}
+
+mise_is_verified() {
+  local expected_checksum="$1"
+  local installed_checksum=""
+
+  [[ -x "$MISE_BIN" ]] || return 1
+  installed_checksum="$(sha256sum "$MISE_BIN" 2>/dev/null | awk '{print $1}' || true)"
+  [[ "$installed_checksum" == "$expected_checksum" ]]
+}
+
+install_mise() {
+  local architecture archive_checksum binary_checksum
+  case "$(uname -m)" in
+    x86_64)
+      architecture="x64"
+      archive_checksum="30c79a0a24d8f0ad80e6c9b11ec54816be2a9b77e7eeae32c1267a5b9d34d3d7"
+      binary_checksum="e79ae57945034903aee8aa2ea66b4c7ca9cd4f4edd5a8a78a589cbae6d0f428a"
+      ;;
+    aarch64 | arm64)
+      architecture="arm64"
+      archive_checksum="7bc2a5558b787a33f22e4b5955cfec58871ad3723658418ad3d2cdf5a0e693b9"
+      binary_checksum="f344c6961190ed2f68e595ed7cb4f03c36c17812bd608886bec799a3082180ff"
+      ;;
+    *)
+      printf 'Unsupported orb architecture: %s\n' "$(uname -m)" >&2
+      return 1
+      ;;
+  esac
+
+  if mise_is_verified "$binary_checksum"; then
+    printf 'mise %s is already installed and verified\n' "$MISE_VERSION"
+    return
+  fi
+
+  local archive extract_dir staged_bin
+  install -d "$HOME/.local/bin"
+  archive="$(mktemp)"
+  extract_dir="$(mktemp -d)"
+  staged_bin="$(mktemp "$HOME/.local/bin/.mise.XXXXXX")"
+  trap "rm -f '$archive' '$staged_bin'; rm -rf '$extract_dir'" EXIT
+
+  curl --fail --silent --show-error --location \
+    --connect-timeout 10 --max-time 120 --retry 3 --retry-all-errors --retry-delay 2 --retry-max-time 180 \
+    --speed-limit 1024 --speed-time 30 \
+    "https://github.com/jdx/mise/releases/download/v${MISE_VERSION}/mise-v${MISE_VERSION}-linux-${architecture}.tar.xz" \
+    --output "$archive"
+  printf '%s  %s\n' "$archive_checksum" "$archive" | sha256sum --check --status
+  tar -xJf "$archive" -C "$extract_dir" mise/bin/mise
+  install -m755 "$extract_dir/mise/bin/mise" "$staged_bin"
+  printf '%s  %s\n' "$binary_checksum" "$staged_bin" | sha256sum --check --status
+  mv -- "$staged_bin" "$MISE_BIN"
+  rm -f "$archive"
+  rm -rf "$extract_dir"
+  trap - EXIT
+}
+
+configure_login_shell() {
+  local marker="# tldrists mise activation"
+  local profile="$HOME/.bash_profile"
+  local repo_root_q mise_bin_q
+  if grep -Fqx "$marker" "$profile" 2>/dev/null; then
+    return
+  fi
+  printf -v repo_root_q '%q' "$REPO_ROOT"
+  printf -v mise_bin_q '%q' "$MISE_BIN"
+
+  cat >> "$profile" <<EOF
+
+$marker
+case ":\${PATH:-}:" in
+  *":\${HOME}/.local/bin:"*) ;;
+  *) export PATH="\${HOME}/.local/bin\${PATH:+:\${PATH}}" ;;
+esac
+if [[ "\${PWD}" == $repo_root_q && -x $mise_bin_q ]]; then
+  eval "\$($mise_bin_q activate bash)"
+fi
+EOF
+}
+
+install_toolchain() {
+  env MISE_HTTP_DOWNLOAD_TIMEOUT=60s timeout --foreground 300 "$MISE_BIN" install --locked --yes
+}
+
+sync_generator_dependencies() {
+  env UV_HTTP_TIMEOUT=60 timeout --foreground 300 "$MISE_BIN" exec -- \
+    uv sync --directory "$REPO_ROOT/generator" --locked --dev
+}
+
+install_git_hooks() {
+  local hooks_dir
+  hooks_dir="$(git rev-parse --path-format=absolute --git-common-dir)/hooks"
+  git config --local core.hooksPath "$hooks_dir"
+  "$MISE_BIN" exec -- lefthook install --force
+}
+
+platform_arch() {
+  case "$(uname -m)" in
+    x86_64)
+      printf 'amd64\n'
+      ;;
+    aarch64 | arm64)
+      printf 'arm64\n'
+      ;;
+    *)
+      printf 'Unsupported Linux architecture: %s\n' "$(uname -m)" >&2
+      return 1
+      ;;
+  esac
+}
+
+install_go() {
+  local arch
+  local go_root="$TOOLCHAIN_DIR/go/$GO_VERSION"
+  local archive
+
+  arch="$(platform_arch)"
+  if [[ ! -x "$go_root/bin/go" ]] || ! "$go_root/bin/go" version | grep -Fq "go$GO_VERSION"; then
+    archive="$(mktemp)"
+    rm -rf -- "$go_root"
+    mkdir -p "$TOOLCHAIN_DIR/go"
+    curl --fail --location --retry 3 --retry-delay 1 --silent --show-error \
+      "https://go.dev/dl/go${GO_VERSION}.linux-${arch}.tar.gz" \
+      --output "$archive"
+    tar -xzf "$archive" -C "$TOOLCHAIN_DIR/go"
+    mv "$TOOLCHAIN_DIR/go/go" "$go_root"
+    rm -f "$archive"
+  fi
+
+  ln -sfn "$go_root/bin/go" "$HOME/.local/bin/go"
+  ln -sfn "$go_root/bin/gofmt" "$HOME/.local/bin/gofmt"
+  "$HOME/.local/bin/go" version
+}
+
+install_hugo() {
+  local arch
+  local hugo_root="$TOOLCHAIN_DIR/hugo/$HUGO_VERSION"
+  local hugo_bin="$hugo_root/hugo"
+  local archive extract_dir
+
+  arch="$(platform_arch)"
+  if [[ ! -x "$hugo_bin" ]] || ! "$hugo_bin" version | grep -Fq "v$HUGO_VERSION"; then
+    archive="$(mktemp)"
+    extract_dir="$(mktemp -d)"
+    rm -rf -- "$hugo_root"
+    mkdir -p "$hugo_root"
+    curl --fail --location --retry 3 --retry-delay 1 --silent --show-error \
+      "https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-${arch}.tar.gz" \
+      --output "$archive"
+    tar -xzf "$archive" -C "$extract_dir"
+    install -m 0755 "$extract_dir/hugo" "$hugo_bin"
+    rm -f "$archive"
+    rm -rf "$extract_dir"
+  fi
+
+  ln -sfn "$hugo_bin" "$HOME/.local/bin/hugo"
+  "$HOME/.local/bin/hugo" version | sed -n '1p'
+}
+
+prepare_website() {
+  (
+    cd "$REPO_ROOT/website"
+    export GOTOOLCHAIN=local
+    "$HOME/.local/bin/go" mod download
+    "$HOME/.local/bin/hugo" build --minify --environment production --gc --cleanDestinationDir
+    rm -rf -- public
+  )
+}
+
+main() {
+  cd "$REPO_ROOT"
+  run_step "Install system prerequisites" ensure_apt_packages
+  run_step "Install mise" install_mise
+  export PATH="$HOME/.local/bin:$PATH"
+  run_step "Configure the login shell" configure_login_shell
+  run_step "Install the locked toolchain" install_toolchain
+  run_step "Sync locked generator dependencies" sync_generator_dependencies
+  run_step "Install commit hooks" install_git_hooks
+  run_step "Install Go $GO_VERSION" install_go
+  run_step "Install extended Hugo $HUGO_VERSION" install_hugo
+  run_step "Resolve website modules and verify the build" prepare_website
+
+  printf 'TLDRists orb setup is ready at %s\n' "$REPO_ROOT"
+}
+
+if [[ "${BASH_SOURCE[0]}" == "$0" ]]; then
+  main "$@"
+fi

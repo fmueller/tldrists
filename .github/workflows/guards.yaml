@@ -1,0 +1,25 @@
+name: Repository Guards
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  policy:
+    name: Commit Policy Guards
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+      - name: Check commit message policy
+        run: bash scripts/check-commit-msg-test.sh
+      - name: Check push message policy
+        run: bash scripts/check-push-messages-test.sh
+      - name: Check author identity policy
+        run: bash scripts/check-author-test.sh

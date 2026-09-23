@@ -15,16 +15,16 @@ TLDRists is a philosophical microblogging platform with two main components:
 ### Generator (Python)
 
 ```bash
-cd generator
-poetry install                    # Install dependencies
-poetry run ruff check .           # Lint
-poetry run ruff format .          # Format
-poetry run mypy                   # Type check
-poetry run pytest                 # Run tests
-poetry run pytest -v              # Verbose test output
+mise run setup                    # Install Mise tools, dependencies, and hooks
+mise exec -- uv sync --directory generator --locked --dev
+mise exec -- uv run --directory generator ruff check
+mise exec -- uv run --directory generator ruff format --check
+mise exec -- uv run --directory generator mypy
+mise exec -- uv run --directory generator pytest
+mise exec -- uv run --directory generator pytest -v
 
 # Run CLI (requires OLLAMA_URL and OLLAMA_MODEL env vars)
-poetry run tldrists-gen notae generate -i internal -p "Topic" -n 3
+mise exec -- uv run --directory generator tldrists-gen notae generate -i internal -p "Topic" -n 3
 ```
 
 ### Website (Hugo)
@@ -59,7 +59,7 @@ hugo build --minify               # Production build
 
 ## Commit Style
 
-Follow Conventional Commits: `feat:`, `fix:`, `chore:`, `build(deps):` with subject lines under 72 characters.
+Follow Conventional Commits: `feat:`, `fix:`, `chore:`, `build(deps):` with a blank line and descriptive body. Wrap body lines at 72 characters. Automated attribution and agent authors are rejected by the local hooks.
 
 ## Environment Variables
 
