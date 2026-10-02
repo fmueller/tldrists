@@ -13,7 +13,7 @@ dependencies = [
     "typer >=0.16.0",
     "pyyaml >=6.0.2",
     # The generator uses the pydantic-ai 1.x OpenAIModel API; migrate it before 2.x.
-    "pydantic-ai-slim[openai] >=1.77.0,<2.0.0"
+    "pydantic-ai-slim[openai] >=1.77.0,<3.0.0"
 ]
 
 [project.scripts]
